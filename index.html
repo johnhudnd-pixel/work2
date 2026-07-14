@@ -6,18 +6,86 @@
     <title>Video Downloader</title>
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/819/819041.png">
     <style>
-        *{ margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
-        body{ background:#f8fafc; min-height:100vh; display:flex; justify-content:center; align-items:center; }
-        .box{ width:90%; max-width:430px; background:white; padding:35px; border-radius:20px; text-align:center; box-shadow:0 10px 35px rgba(0,0,0,.08); border:1px solid #eee; }
-        .icon{ width:90px; height:90px; background:#2563eb; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:auto; font-size:45px; color:white; }
-        h1{ margin-top:20px; font-size:28px; }
-        p{ color:#666; margin:15px 0 25px; line-height:1.5; }
-        .progress{ width:100%; height:8px; background:#e5e7eb; border-radius:20px; overflow:hidden; margin-bottom:20px; }
-        .bar{ width:0%; height:100%; background:#2563eb; transition:.3s; }
-        button{ width:100%; padding:15px; background:#2563eb; color:white; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer; }
-        button:hover{ background:#1d4ed8; }
-        .status{ margin-top:15px; color:#16a34a; font-weight:bold; }
-        footer{ position:fixed; bottom:15px; font-size:13px; color:#888; }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+        body{
+            background:#f8fafc;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .box{
+            width:90%;
+            max-width:430px;
+            background:#fff;
+            padding:35px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 35px rgba(0,0,0,.08);
+            border:1px solid #eee;
+        }
+        .icon{
+            width:90px;
+            height:90px;
+            background:#2563eb;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:auto;
+            font-size:45px;
+            color:#fff;
+        }
+        h1{
+            margin-top:20px;
+            font-size:28px;
+        }
+        p{
+            color:#666;
+            margin:15px 0 25px;
+            line-height:1.5;
+        }
+        .progress{
+            width:100%;
+            height:8px;
+            background:#e5e7eb;
+            border-radius:20px;
+            overflow:hidden;
+            margin-bottom:20px;
+        }
+        .bar{
+            width:0%;
+            height:100%;
+            background:#2563eb;
+            transition:.3s;
+        }
+        #download{
+            display:block;
+            width:100%;
+            padding:15px;
+            background:#2563eb;
+            color:#fff;
+            text-decoration:none;
+            border-radius:10px;
+            font-size:18px;
+            font-weight:bold;
+            text-align:center;
+            cursor:pointer;
+        }
+        #download:hover{
+            background:#1d4ed8;
+        }
+        .status{
+            margin-top:15px;
+            color:#16a34a;
+            font-weight:bold;
+        }
+        footer{
+            position:fixed;
+            bottom:15px;
+            font-size:13px;
+            color:#888;
+        }
     </style>
 </head>
 <body>
@@ -25,47 +93,57 @@
 <div class="box">
     <div class="icon">📥</div>
     <h1>Video Downloader</h1>
-    <p>Your video is ready. Auto-redirecting in 10 seconds...</p>
-    <div class="progress"><div class="bar" id="bar"></div></div>
-    <button id="download">⬇ Download Video</button>
+    <p>Your video is ready. Auto-redirecting in 8 seconds...</p>
+
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+
+    <!-- Nofollow Link -->
+    <a id="download"
+       href="https://daubwhereupon.com/ztt69euwns?key=eb07c0cee12be5cd4f220675d0d1b9ea"
+       rel="nofollow sponsored noopener noreferrer">
+       ⬇ Download Video
+    </a>
+
     <div class="status" id="status">Ready</div>
 </div>
 
 <footer>© 2026 Video Downloader</footer>
 
 <script>
-    const downloadURL = "https://daubwhereupon.com/ztt69euwns?key=eb07c0cee12be5cd4f220675d0d1b9ea";
-    const btn = document.getElementById("download");
-    const bar = document.getElementById("bar");
-    const status = document.getElementById("status");
+const btn = document.getElementById("download");
+const bar = document.getElementById("bar");
+const status = document.getElementById("status");
 
-    function startDownload() {
-        // Redirect timer band kar do agar user ne khud click kiya
-        clearTimeout(autoRedirectTimer);
-        
-        btn.disabled = true;
-        status.innerHTML = "Preparing download...";
-        
-        let progress = 0;
-        let load = setInterval(() => {
-            progress += 20;
-            bar.style.width = progress + "%";
-            if (progress >= 100) {
-                clearInterval(load);
-                status.innerHTML = "Opening link...";
-                setTimeout(() => {
-                    window.location.href = downloadURL;
-                }, 500);
-            }
-        }, 300);
-    }
+function startDownload() {
+    clearTimeout(autoRedirectTimer);
 
-    // Auto-redirect ko 8 seconds (8000ms) par set kiya hai taake safety bani rahe
-    const autoRedirectTimer = setTimeout(() => {
-        startDownload();
-    }, 8000); 
+    btn.style.pointerEvents = "none";
+    status.innerHTML = "Preparing download...";
 
-    btn.onclick = startDownload;
+    let progress = 0;
+
+    const load = setInterval(() => {
+        progress += 20;
+        bar.style.width = progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(load);
+            status.innerHTML = "Opening link...";
+
+            setTimeout(() => {
+                btn.click();
+            }, 500);
+        }
+    }, 300);
+}
+
+const autoRedirectTimer = setTimeout(startDownload, 8000);
+
+btn.addEventListener("click", () => {
+    clearTimeout(autoRedirectTimer);
+});
 </script>
 
 </body>
